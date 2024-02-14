@@ -1,7 +1,23 @@
-.form {
-  &-container {
+.test {
+  & {
     background-color: lightgray;
     height: 100vh;
-    font-size: 4rem;
+    font-size: 2rem;
   }
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+.personalform{
+  display: flex;
+  flex-direction: column;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 50px;
+  align-items: flex-start;
+}
+.mat-mdc-form-field {
+  margin-top: 16px;
 }
