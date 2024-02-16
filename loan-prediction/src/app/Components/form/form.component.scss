@@ -1,0 +1,32 @@
+.form {
+  &-container {
+    background-color: lightgray;
+    height: 100vh;
+    font-size: 2rem;
+    position: relative;
+  }
+}
+.stepper {
+  background-color: rgba(255, 255, 255, 0.591);
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3rem 5rem;
+  border-radius: 2rem;
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+.personalform {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-group {
+  margin: 1rem;
+  & > * {
+    padding: 0.5rem 1rem;
+  }
+}
