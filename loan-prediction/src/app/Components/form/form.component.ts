@@ -15,14 +15,31 @@ import { PredictionServiceService } from 'src/app/services/predictionServices/pr
 })
 export class FormComponent {
   agePattern = /^(?:100|[0-9]|[1-9][0-9])$/;
+  Emailpattern= /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  phonepattern= /^\d{10}$/;
+  Namepattern = '^[a-zA-Z ]+$';
 
-  firstFormGroup = this._formBuilder.group({
+  
+  ContactDetails = this._formBuilder.group({
+    email: ['', Validators.pattern(this.Emailpattern)],
+    Name: ['', Validators.pattern(this.Namepattern)],
+    phone: ['', Validators.pattern(this.phonepattern)],
+  });
+ 
+  saveContactDetailsToLocalStorage(): void {
+    if (this.ContactDetails.valid) {
+      const ContactDetailsData = JSON.stringify(this.ContactDetails.value);
+      localStorage.setItem('ContactDetails', ContactDetailsData);
+    }
+  }
+  
+  PersonDetails = this._formBuilder.group({
     age: ['', Validators.pattern(this.agePattern)], //0-100
     homeOwnership: ['', Validators.required],
     income: ['', Validators.required], //numbers
     experience: ['', Validators.required], //numbers
   });
-  secondFormGroup = this._formBuilder.group({
+  LoanDetails = this._formBuilder.group({
     Intent: ['', Validators.required],
     Amount: ['', Validators.required],
     grade: [''],
@@ -40,17 +57,19 @@ export class FormComponent {
   ) {}
   OnSubmit() {
     let reqData = {
-      person_age: this.firstFormGroup.value.age,
-      person_home_ownership: this.firstFormGroup.value.homeOwnership,
-      person_income: this.firstFormGroup.value.income,
-      person_emp_length: this.firstFormGroup.value.experience,
+      person_age: this.PersonDetails.value.age,
+      person_home_ownership: this.PersonDetails.value.homeOwnership,
+      person_income: this.PersonDetails.value.income,
+      person_emp_length: this.PersonDetails.value.experience,
       cb_person_default_on_file: this.Cb,
-      loan_intent: this.secondFormGroup.value.Intent,
+      loan_intent: this.LoanDetails.value.Intent,
       loan_grade: this.loangrade,
-      loan_amnt: this.secondFormGroup.value.Amount,
+      loan_amnt: this.LoanDetails.value.Amount,
       loan_int_rate: this.rate,
     };
     console.log(reqData);
+    this.saveContactDetailsToLocalStorage(); 
+
     this.predictionService.getPredictedValue(reqData).subscribe((res: any) => {
       console.log(res.predictedValue);
       this.predictedValue=res.predictedValue

@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
-// import { GaugeComponent } from './gauge/gauge.component';
 import { DxBarGaugeModule } from 'devextreme-angular';
 import { DxCircularGaugeModule } from 'devextreme-angular';
 import { DxSelectBoxModule } from 'devextreme-angular';
@@ -30,7 +29,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ImageComponent,
     FormComponent,
     DashboardComponent,
-    // GaugeComponent
   ],
   imports: [
     BrowserModule,
