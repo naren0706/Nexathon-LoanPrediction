@@ -1,11 +1,23 @@
 ::ng-deep #gauge-demo {
-    height: 440px;
-    width: 100%;
-  }
-  
-  ::ng-deep #gauge {
-    width: 80%;
-    height: 100%;
-    float: left;
-  }
-  
+  height: 440px;
+  width: 100%;
+}
+
+::ng-deep #gauge {
+  width: 80%;
+  height: 100%;
+  float: left;
+}
+
+.gauge-container {
+  background-color: lightgray;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gauge-sub-container {
+  background-color: rgba(255, 255, 255, 0.539);
+  padding: 2rem;
+  border-radius: 2rem;
+}

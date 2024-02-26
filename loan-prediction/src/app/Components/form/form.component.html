@@ -1,22 +1,40 @@
 <div class="form-container">
-  <mat-stepper [linear]="!isLinear" #stepper class="stepper">
+  <mat-stepper [linear]="isLinear" #stepper class="stepper">
     <mat-step [stepControl]="ContactDetails">
       <form [formGroup]="ContactDetails">
-        <ng-template matStepLabel>Contact Details</ng-template>
+        <ng-template matStepLabel>Contact </ng-template>
         <div class="personalform">
           <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput type="text" placeholder="Name" formControlName="Name" required />
+            <input
+              matInput
+              type="text"
+              placeholder="Name"
+              formControlName="Name"
+              required
+            />
             <mat-error>Enter the Name Correctly</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Person Mail Id</mat-label>
-            <input matInput type="mail" placeholder="mail id" formControlName="email" required />
+            <input
+              matInput
+              type="mail"
+              placeholder="mail id"
+              formControlName="email"
+              required
+            />
             <mat-error>Enter the Mailid Correctly</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Phone Number</mat-label>
-            <input matInput type="number" placeholder="Phone Number" formControlName="phone" required />
+            <input
+              matInput
+              type="number"
+              placeholder="Phone Number"
+              formControlName="phone"
+              required
+            />
             <mat-error>Enter the Number Correctly</mat-error>
           </mat-form-field>
         </div>
@@ -28,31 +46,49 @@
 
     <mat-step [stepControl]="PersonDetails">
       <form [formGroup]="PersonDetails">
-        <ng-template matStepLabel>Personal Details</ng-template>
+        <ng-template matStepLabel>Personal</ng-template>
         <div class="personalform">
           <mat-form-field>
             <mat-label>Age</mat-label>
-            <input matInput type="number" placeholder="Age" formControlName="age" required />
+            <input
+              matInput
+              type="number"
+              placeholder="Age"
+              formControlName="age"
+              required
+            />
             <mat-error>Enter the Age Correctly</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Home Ownership</mat-label>
             <mat-select formControlName="homeOwnership" required>
-              <mat-option value="Rent">Rent</mat-option>
-              <mat-option value="Own">Own</mat-option>
-              <mat-option value="Mortage">Mortgage</mat-option>
-              <mat-option value="Others">Others</mat-option>
+              <mat-option value="RENT">Rent</mat-option>
+              <mat-option value="OWN">Own</mat-option>
+              <mat-option value="MORTAGE">Mortgage</mat-option>
+              <mat-option value="OTHER">Other</mat-option>
             </mat-select>
             <mat-error>Please select your home ownership status</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Person Income</mat-label>
-            <input matInput type="number" placeholder="In Rupees" formControlName="income" required />
+            <input
+              matInput
+              type="number"
+              placeholder="In Rupees"
+              formControlName="income"
+              required
+            />
             <mat-error>Enter the Amount Correctly</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Work Experience</mat-label>
-            <input matInput type="number" placeholder="In Months" formControlName="experience" required />
+            <input
+              matInput
+              type="number"
+              placeholder="In Months"
+              formControlName="experience"
+              required
+            />
             <mat-error>Enter the Work Experience Correctly</mat-error>
           </mat-form-field>
         </div>
@@ -62,45 +98,75 @@
         </div>
       </form>
     </mat-step>
-    
+
     <mat-step [stepControl]="LoanDetails">
       <form [formGroup]="LoanDetails">
-        <ng-template matStepLabel>Loan Details</ng-template>
+        <ng-template matStepLabel>Loan</ng-template>
         <div class="personalform">
           <mat-form-field>
             <mat-label>Loan Intent</mat-label>
             <mat-select formControlName="Intent" required>
-              <mat-option value="Personal">Personal</mat-option>
-              <mat-option value="Education">Education</mat-option>
-              <mat-option value="House">House</mat-option>
-              <mat-option value="others">Others</mat-option>
+              <mat-option value="PERSONAL">PERSONAL</mat-option>
+              <mat-option value="EDUCATION">EDUCATION</mat-option>
+              <mat-option value="MEDICAL">MEDICAL</mat-option>
+              <mat-option value="VENTURE">VENTURE</mat-option>
+              <mat-option value="HOMEIMPROVEMENT">HOMEIMPROVEMENT</mat-option>
+              <mat-option value="DEBTCONSOLIDATION"
+                >DEBTCONSOLIDATION</mat-option
+              >
             </mat-select>
             <mat-error>Please select your Loan Intent</mat-error>
           </mat-form-field>
           <label id="radio-group-label">Loan Grade</label>
-          <mat-radio-group radioGroup class="radio-group" (change)="LoanGradevalue($event)" color="primary">
+          <mat-radio-group
+            radioGroup
+            class="radio-group"
+            (change)="LoanGradevalue($event)"
+            color="primary"
+          >
             <mat-radio-button value="A">A</mat-radio-button>
             <mat-radio-button value="B">B</mat-radio-button>
             <mat-radio-button value="C">C</mat-radio-button>
             <mat-radio-button value="D">D</mat-radio-button>
+            <mat-radio-button value="E">E</mat-radio-button>
+            <mat-radio-button value="F">F</mat-radio-button>
           </mat-radio-group>
-          <mat-label>Cb Status Default</mat-label>
-          <mat-radio-group color="primary" #radioGroup class="radio-group" (change)="CbDefaultValue($event)">
-            <mat-radio-button value="Yes">Yes</mat-radio-button>
-            <mat-radio-button value="No">No</mat-radio-button>
+          <mat-label>cibil Status Default</mat-label>
+          <mat-radio-group
+            color="primary"
+            #radioGroup
+            class="radio-group"
+            (change)="CbDefaultValue($event)"
+          >
+            <mat-radio-button value="Y">Yes</mat-radio-button>
+            <mat-radio-button value="N">No</mat-radio-button>
           </mat-radio-group>
           <mat-form-field>
             <mat-label>Loan Amount</mat-label>
-            <input matInput type="number" formControlName="Amount" placeholder="In Rupees" required />
+            <input
+              matInput
+              type="number"
+              formControlName="Amount"
+              placeholder="In Rupees"
+              required
+            />
             <mat-error>Enter the Amount Correctly</mat-error>
           </mat-form-field>
 
           <div class="label-container">
-            <label id="name-label" class="name-label">Loan Interest Rate:</label>
+            <label id="name-label" class="name-label"
+              >Loan Interest Rate:</label
+            >
             <label class="value-label"> {{ slider.value }}</label>
           </div>
 
-          <mat-slider class="margin" [max]="25" [min]="1" [step]="0.01" (input)="onSliderChange(slider.value)">
+          <mat-slider
+            class="margin"
+            [max]="25"
+            [min]="1"
+            [step]="0.01"
+            (input)="onSliderChange(slider.value)"
+          >
             <input matSliderThumb #slider />
           </mat-slider>
         </div>

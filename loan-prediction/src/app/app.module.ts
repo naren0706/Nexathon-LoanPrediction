@@ -22,6 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { GaugeComponent } from './Components/gauge/gauge.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ImageComponent,
     FormComponent,
     DashboardComponent,
+    GaugeComponent
   ],
   imports: [
     BrowserModule,

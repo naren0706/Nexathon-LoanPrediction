@@ -1,3 +1,4 @@
+import { Route, Router, Routes } from '@angular/router';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -15,24 +16,23 @@ import { PredictionServiceService } from 'src/app/services/predictionServices/pr
 })
 export class FormComponent {
   agePattern = /^(?:100|[0-9]|[1-9][0-9])$/;
-  Emailpattern= /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  phonepattern= /^\d{10}$/;
+  Emailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  phonepattern = /^\d{10}$/;
   Namepattern = '^[a-zA-Z ]+$';
 
-  
   ContactDetails = this._formBuilder.group({
     email: ['', Validators.pattern(this.Emailpattern)],
     Name: ['', Validators.pattern(this.Namepattern)],
     phone: ['', Validators.pattern(this.phonepattern)],
   });
- 
+
   saveContactDetailsToLocalStorage(): void {
     if (this.ContactDetails.valid) {
       const ContactDetailsData = JSON.stringify(this.ContactDetails.value);
       localStorage.setItem('ContactDetails', ContactDetailsData);
     }
   }
-  
+
   PersonDetails = this._formBuilder.group({
     age: ['', Validators.pattern(this.agePattern)], //0-100
     homeOwnership: ['', Validators.required],
@@ -50,10 +50,11 @@ export class FormComponent {
   rate: number = 0;
   Cb!: string;
   loangrade!: string;
-  predictedValue!:number;
+  predictedValue!: number;
   constructor(
     private _formBuilder: FormBuilder,
-    private predictionService: PredictionServiceService
+    private predictionService: PredictionServiceService,
+    private router: Router
   ) {}
   OnSubmit() {
     let reqData = {
@@ -68,11 +69,18 @@ export class FormComponent {
       loan_int_rate: this.rate,
     };
     console.log(reqData);
-    this.saveContactDetailsToLocalStorage(); 
+    this.saveContactDetailsToLocalStorage();
 
     this.predictionService.getPredictedValue(reqData).subscribe((res: any) => {
       console.log(res.predictedValue);
-      this.predictedValue=res.predictedValue
+      this.predictedValue = res.predictedValue;
+      if (res) {
+        localStorage.setItem('prediction-output', res.predictedValue);
+        localStorage.setItem('PersonalDetails', JSON.stringify(this.ContactDetails.value));
+        this.router.navigateByUrl('gauge');
+      } else {
+        alert('there is something wrong');
+      }
     });
   }
   CbDefaultValue(radioGroup: any) {
